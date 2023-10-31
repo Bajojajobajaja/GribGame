@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public class HeroMovement : MonoBehaviour
 {
     public CharacterController2D Controller;
@@ -22,50 +21,65 @@ public class HeroMovement : MonoBehaviour
     float horizontalmove = 0f;
     bool jump = false;
     bool crouch = false;
+    bool isAttacking = false; // Ќова€ переменна€ дл€ отслеживани€ атаки
+
+    public int HeroHealth = 100;
+    int currentHeroHealth;
+
+    void Start()
+    {
+        currentHeroHealth = HeroHealth;
+    }
 
     void Update()
     {
-        horizontalmove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalmove));
+        // ѕроверка, можно ли атаковать
+        if (!isAttacking)
+        {
+            horizontalmove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalmove));
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            animator.SetBool("IsJumping", true);
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                animator.SetBool("IsJumping", true);
+            }
 
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-            animator.SetBool("IsCrouching", true);
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-            animator.SetBool("IsCrouching", false);
-        }
+            if (Input.GetButtonDown("Crouch"))
+            {
+                crouch = true;
+                animator.SetBool("IsCrouching", true);
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                crouch = false;
+                animator.SetBool("IsCrouching", false);
+            }
 
-        if (Input.GetButtonDown("Attack") && Time.time >= nextAttackTime)
-        {
-            Attack();
-            nextAttackTime = Time.time + 2f / attackRate;
+            if (Input.GetButtonDown("Attack") && Time.time >= nextAttackTime)
+            {
+                StartCoroutine(AttackCoroutine());
+            }
         }
-        
     }
 
-    public async void Attack()
+    // Coroutine дл€ атаки
+    IEnumerator AttackCoroutine()
     {
+        isAttacking = true;
         animator.SetTrigger("Attack");
 
-        var t1 = Task.Delay(300);
-        await t1;
+        yield return new WaitForSeconds(0.3f); // ѕодождать, пока анимаци€ атаки завершитс€
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        foreach(Collider2D enemy in hitEnemies) 
+        foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+
+        yield return new WaitForSeconds(0.5f); // ѕодождать немного между атаками
+        isAttacking = false;
     }
 
     public void OnLanding()
@@ -78,9 +92,32 @@ public class HeroMovement : MonoBehaviour
         animator.SetBool("IsCrouching", isCrouching);
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHeroHealth -= damage;
+
+        //anim
+
+        if (currentHeroHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        //anim and delit
+
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    }
+
     public void FixedUpdate()
     {
-        Controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
+        if (!isAttacking) // ѕроверка, можно ли двигатьс€ во врем€ атаки
+        {
+            Controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
+        }
         jump = false;
     }
 }
