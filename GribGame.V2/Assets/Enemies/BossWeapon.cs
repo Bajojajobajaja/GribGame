@@ -10,7 +10,7 @@ public class BossWeapon : MonoBehaviour
     public float attackRange = 1f;
     public LayerMask attackMask;
 
-    public void Grib_Attack()
+    public void Attack()
     {
         Vector3 pos = transform.position;
         pos += transform.right * attackOffset.x;
@@ -19,7 +19,7 @@ public class BossWeapon : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
-            colInfo.GetComponent<HeroMovement>().TakeDamage(attackDamage);
+            colInfo.GetComponent<HeroHealth>().TakeDamage(attackDamage);
         }
     }
 }

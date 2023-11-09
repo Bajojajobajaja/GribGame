@@ -92,26 +92,6 @@ public class HeroMovement : MonoBehaviour
         animator.SetBool("IsCrouching", isCrouching);
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHeroHealth -= damage;
-
-        //anim
-
-        if (currentHeroHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        //anim and delit
-
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-    }
-
     public void FixedUpdate()
     {
         if (!isAttacking) // ѕроверка, можно ли двигатьс€ во врем€ атаки
