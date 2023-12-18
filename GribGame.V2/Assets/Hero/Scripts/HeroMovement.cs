@@ -13,7 +13,7 @@ public class HeroMovement : MonoBehaviour
 
     public float runSpeed = 20f;
     public float attackRange = 0.5f;
-    public int attackDamage = 20;
+    public int attackDamage = 5;
 
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -23,12 +23,12 @@ public class HeroMovement : MonoBehaviour
     bool crouch = false;
     bool isAttacking = false; // Ќова€ переменна€ дл€ отслеживани€ атаки
 
-    public int HeroHealth = 100;
-    int currentHeroHealth;
+    /*public float HeroHealth = 100f;
+    float currentHeroHealth;*/
 
     void Start()
     {
-        currentHeroHealth = HeroHealth;
+        //currentHeroHealth = HeroHealth;
     }
 
     void Update()

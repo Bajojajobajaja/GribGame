@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class HeroHealth : MonoBehaviour
 {
+    public Image HpBarHero;
 
-    public int maxHealth = 100;
-    int currentHeroHealth;
+    public float maxHealth = 100f;
+    float currentHeroHealth;
     void Start()
     {
         currentHeroHealth = maxHealth;
@@ -17,6 +20,8 @@ public class HeroHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHeroHealth -= damage;
+        HpBarHero.fillAmount = currentHeroHealth / maxHealth;
+
         Debug.Log("Ïèçäþëü");
         //anim
 
@@ -30,6 +35,8 @@ public class HeroHealth : MonoBehaviour
     {
         //anim and delit
         Debug.Log("Ñìýðòü");
-        SceneManager.LoadScene(0);
+        Destroy(gameObject);
+
+        //SceneManager.LoadScene(0);
     }
 }
