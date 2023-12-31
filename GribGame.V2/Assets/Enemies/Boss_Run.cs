@@ -6,13 +6,14 @@ public class Boss_Run : StateMachineBehaviour
 {
     public float speed = 0.5f;
     public float attackRange = 1f;
-    public LayerMask groundLayer; // Set this in the Inspector to the layer(s) representing the ground.
+    public float wakeUpDistance = 3f; // Дистанция, на которой противник "просыпается"
+    public bool wakeUp = false;
+    public LayerMask groundLayer;
 
     Transform player;
     Rigidbody2D rb;
     Boss boss;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -20,19 +21,21 @@ public class Boss_Run : StateMachineBehaviour
         boss = animator.GetComponent<Boss>();
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (player != null)
+        // Проверяем дистанцию до игрока при входе в состояние
+        if (player != null && Vector2.Distance(player.position, rb.position) < wakeUpDistance)
+        {
+            wakeUp = true;
+        }
+        if ((player != null) && wakeUp)
         {
             boss.LookAtPlayer();
 
-            // Raycast to check if there is ground below the enemy
             RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1f, groundLayer);
             if (hit.collider == null)
             {
-                // No ground below, stop movement
-                return ;
+                return;
             }
 
             Vector2 target = new Vector2(player.position.x, rb.position.y);
@@ -46,7 +49,6 @@ public class Boss_Run : StateMachineBehaviour
         }
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Attack");

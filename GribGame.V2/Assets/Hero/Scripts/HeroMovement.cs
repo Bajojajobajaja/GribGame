@@ -20,16 +20,8 @@ public class HeroMovement : MonoBehaviour
 
     float horizontalmove = 0f;
     bool jump = false;
-    bool crouch = false;
     bool isAttacking = false; // Ќова€ переменна€ дл€ отслеживани€ атаки
 
-    /*public float HeroHealth = 100f;
-    float currentHeroHealth;*/
-
-    void Start()
-    {
-        //currentHeroHealth = HeroHealth;
-    }
 
     void Update()
     {
@@ -45,7 +37,7 @@ public class HeroMovement : MonoBehaviour
                 animator.SetBool("IsJumping", true);
             }
 
-            if (Input.GetButtonDown("Crouch"))
+            /*if (Input.GetButtonDown("Crouch"))
             {
                 crouch = true;
                 animator.SetBool("IsCrouching", true);
@@ -54,7 +46,7 @@ public class HeroMovement : MonoBehaviour
             {
                 crouch = false;
                 animator.SetBool("IsCrouching", false);
-            }
+            }*/
 
             if (Input.GetButtonDown("Attack") && Time.time >= nextAttackTime)
             {
@@ -87,16 +79,11 @@ public class HeroMovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
     }
 
-    public void OnCrouching(bool isCrouching)
-    {
-        animator.SetBool("IsCrouching", isCrouching);
-    }
-
     public void FixedUpdate()
     {
         if (!isAttacking) // ѕроверка, можно ли двигатьс€ во врем€ атаки
         {
-            Controller.Move(horizontalmove * Time.fixedDeltaTime, crouch, jump);
+            Controller.Move(horizontalmove * Time.fixedDeltaTime, jump);
         }
         jump = false;
     }

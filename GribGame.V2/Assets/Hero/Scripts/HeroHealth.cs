@@ -34,9 +34,8 @@ public class HeroHealth : MonoBehaviour
     void Die()
     {
         //anim and delit
-        Debug.Log("Ñìýðòü");
         Destroy(gameObject);
 
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }
