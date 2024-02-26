@@ -43,7 +43,7 @@ MonoBehaviour:
   wakeUp: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 128
 --- !u!1102 &-4818812849008953937
 AnimatorState:
   serializedVersion: 6
