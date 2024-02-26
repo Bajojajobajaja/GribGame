@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 571597001}
   - component: {fileID: 571597000}
   - component: {fileID: 571596999}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Teleporter
   m_Icon: {fileID: 0}
@@ -387,8 +387,8 @@ Transform:
   m_GameObject: {fileID: 571596997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7957, y: -0.7008, z: 0}
-  m_LocalScale: {x: 0.7913, y: 0.4784, z: 1}
+  m_LocalPosition: {x: 6.1249, y: -0.3948, z: 0}
+  m_LocalScale: {x: 0.7211117, y: 1.1687312, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602168776}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 966479553}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 1296750986}
   - component: {fileID: 1296750985}
   - component: {fileID: 1296750984}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (1)
   m_TagString: Teleporter
   m_Icon: {fileID: 0}
@@ -1058,8 +1058,8 @@ Transform:
   m_GameObject: {fileID: 1296750983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3812, y: -2.6869, z: 0}
-  m_LocalScale: {x: 0.6173837, y: 0.4262, z: 1}
+  m_LocalPosition: {x: -6.3344, y: -2.3008, z: 0}
+  m_LocalScale: {x: 0.7109791, y: 1.1984317, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1434,7 +1434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1490711587}
   - component: {fileID: 1490711586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1478,7 +1478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570016839}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 1632853607}
   - component: {fileID: 1632853608}
   - component: {fileID: 1632853609}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: hero.V1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1837,7 +1837,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 640
   m_GroundCheck: {fileID: 1570016839}
   m_CeilingCheck: {fileID: 602168776}
   m_CrouchDisableCollider: {fileID: 1632853602}
@@ -2000,7 +2000,7 @@ GameObject:
   - component: {fileID: 1810324318}
   - component: {fileID: 1810324317}
   - component: {fileID: 1810324316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2567,7 +2567,7 @@ Transform:
   m_GameObject: {fileID: 1834740922}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.47, y: -0.21, z: 0}
+  m_LocalPosition: {x: -1.01, y: -2.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   attackRange: 1
   attackMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 32768
 --- !u!58 &1834740931
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2818,7 +2818,7 @@ MonoBehaviour:
   attackRange: 1
   attackMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 32768
 --- !u!114 &1945423151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,7 +3002,7 @@ Transform:
   m_GameObject: {fileID: 1945423148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.32, y: -2.14, z: 0}
+  m_LocalPosition: {x: -3.34, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
