@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 public class HeroHealth : MonoBehaviour
 {
+    public Animator animator;
     public Image HpBarHero;
+    public GameObject deathMessageText;
 
     public float maxHealth = 100f;
     float currentHeroHealth;
     void Start()
     {
         currentHeroHealth = maxHealth;
+        deathMessageText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,8 +24,6 @@ public class HeroHealth : MonoBehaviour
     {
         currentHeroHealth -= damage;
         HpBarHero.fillAmount = currentHeroHealth / maxHealth;
-
-        Debug.Log("Ïèçäþëü");
         //anim
 
         if (currentHeroHealth <= 0)
@@ -33,9 +34,21 @@ public class HeroHealth : MonoBehaviour
 
     void Die()
     {
-        //anim and delit
-        Destroy(gameObject);
+        StartCoroutine(DeathText());
+    }
 
+    IEnumerator DeathText()
+    {
+        //Destroy(gameObject);
+        //anim and delit
+
+        animator.SetBool("IsCrouching", true);
+        yield return new WaitForSeconds(1f);
+        deathMessageText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
+
+        deathMessageText.gameObject.SetActive(false);
+        animator.SetBool("IsCrouching", false);
     }
 }

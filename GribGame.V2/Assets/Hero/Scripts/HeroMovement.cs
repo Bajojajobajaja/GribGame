@@ -22,7 +22,7 @@ public class HeroMovement : MonoBehaviour
     bool jump = false;
     bool isAttacking = false; // Новая переменная для отслеживания атаки
 
-
+    
     void Update()
     {
         // Проверка, можно ли атаковать
