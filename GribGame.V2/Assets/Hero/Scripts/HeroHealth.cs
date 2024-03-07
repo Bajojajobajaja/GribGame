@@ -11,7 +11,7 @@ public class HeroHealth : MonoBehaviour
     public Image HpBarHero;
     public GameObject deathMessageText;
 
-    public float maxHealth = 100f;
+    public float maxHealth = 40f;
     float currentHeroHealth;
     void Start()
     {
@@ -42,13 +42,13 @@ public class HeroHealth : MonoBehaviour
         //Destroy(gameObject);
         //anim and delit
 
-        animator.SetBool("IsCrouching", true);
+        animator.SetBool("IsDeath", true);
         yield return new WaitForSeconds(1f);
         deathMessageText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
 
         deathMessageText.gameObject.SetActive(false);
-        animator.SetBool("IsCrouching", false);
+        animator.SetBool("IsDeath", false);
     }
 }
