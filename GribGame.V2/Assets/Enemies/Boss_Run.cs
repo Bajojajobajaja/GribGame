@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss_Run : StateMachineBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 0.2f;
     public float attackRange = 1f;
     public float wakeUpDistance = 3f; // ƒистанци€, на которой противник "просыпаетс€"
     public bool wakeUp = false;
@@ -46,6 +46,10 @@ public class Boss_Run : StateMachineBehaviour
             {
                 animator.SetTrigger("Attack");
             }
+        }
+        if (player != null && Vector2.Distance(player.position, rb.position) > wakeUpDistance*3)
+        {
+            wakeUp = false;
         }
     }
 
