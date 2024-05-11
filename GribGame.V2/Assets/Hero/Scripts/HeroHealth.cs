@@ -11,7 +11,7 @@ public class HeroHealth : MonoBehaviour
     public Image HpBarHero;
     public GameObject deathMessageText;
 
-    public float maxHealth = 40f;
+    public float maxHealth = 100f;
     float currentHeroHealth;
     void Start()
     {
